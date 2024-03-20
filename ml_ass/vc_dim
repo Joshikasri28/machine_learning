@@ -75,4 +75,25 @@ def is_consistent(hypothesis, labeling):
     Returns:
         True if the hypothesis is consistent, False otherwise.
     """
-    for i, label in enumerate(labeling
+    for i, label in enumerate(labeling):
+        if hypothesis(i) != label:
+            return False
+    return True
+
+# Example hypothesis class: Single-variable threshold functions
+def hypothesis_1(x):
+    return 1 if x >= 0 else 0
+
+def hypothesis_2(x):
+    return 1 if x >= 1 else 0
+
+def hypothesis_3(x):
+    return 1 if x >= -1 else 0
+
+# Hypothesis class
+hypothesis_class = [hypothesis_1, hypothesis_2, hypothesis_3]
+
+# Calculate VC dimension
+vc_dimension = calculate_vc_dimension(hypothesis_class)
+print("VC Dimension:", vc_dimension)
+
