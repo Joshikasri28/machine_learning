@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample Data
+x = np.array([0, 1, 2, 3, 4, 5])
+y = np.array([1, 3, 2, 5, 7, 8])
+
+# Solving for m and c (slope and intercept) using numpy's linear algebra functions
+A = np.vstack([x, np.ones(len(x))]).T
+m, c = np.linalg.lstsq(A, y, rcond=None)[0]
+
+# Creating the line of best fit
+line_of_best_fit = m*x + c
+
+# Plotting the data and the line of best fit
+plt.plot(x, y, 'o', label='Original data', markersize=8)
+plt.plot(x, line_of_best_fit, 'r', label='Line of best fit')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Linear Regression Example')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Output the calculated values of m and c
+print("Slope (m):", m)
+print("Intercept (c):", c)
